@@ -16,13 +16,13 @@ class MovieTableViewCell:UITableViewCell{
     @IBOutlet weak var releaseDateLabel:UILabel!
     @IBOutlet weak var overviewLabel:UILabel!
     
-    func fill(_ movie:Movie){
-        if let posterURL = movie.posterURL{
+    func fill(_ viewModel:MovieCellViewModel){
+        if let posterURL = viewModel.posterURL{
             posterImageView.kf.setImage(with: posterURL)
         }
-        titleLabel.text = movie.title
-        releaseDateLabel.text = movie.releaseDate
-        overviewLabel.text = movie.overview
+        titleLabel.text = viewModel.movieTitle
+        releaseDateLabel.text = viewModel.releaseDate
+        overviewLabel.text = viewModel.overview
     }
     
 }

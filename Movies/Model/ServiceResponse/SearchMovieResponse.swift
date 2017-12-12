@@ -22,8 +22,8 @@ class SearchMovieResponse:Mappable{
     
     required init?(map: Map) {
         page         <- map["page"]
-        totalResults <- map["totalResults"]
-        totalPages   <- map["totalPages"]
+        totalResults <- map["total_results"]
+        totalPages   <- map["total_pages"]
         movies       <- map["results"]
     }
 }

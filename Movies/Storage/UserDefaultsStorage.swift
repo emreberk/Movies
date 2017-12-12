@@ -28,6 +28,7 @@ class UserDefaultsStorage: StorageProtocol{
         self.userDefaults = defaults
     }
     
+    // FIXME: Do not add a query if it already exits
     func addNewQuery(_ query: String) {
         var lastQueries = getLastQueries()
         let countDifference = lastQueries.count - Constant.LastQueriesMaxLimit

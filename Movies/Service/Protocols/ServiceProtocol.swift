@@ -42,11 +42,15 @@ extension ServiceProtocol{
                         completion(item,nil)
                     }else{
                         guard let value = response.result.value,
-                            let error = Mapper<ServiceErrorResponse>().map(JSONObject:value) else{
+                            let statusCode = response.response?.statusCode,
+                            let error = Mapper<ServiceErrorResponse>().map(JSONObject:value),
+                            let errors = error.errors,
+                            errors.count > 0 else{
                                 completion(nil, .unknown)
                                 return
                         }
-                        completion(nil,.service(code:error.code, message:error.message))
+                        
+                        completion(nil,.service(code:statusCode, message:errors[0]))
                     }
                 }else{
                     completion(nil, .requestFailed)

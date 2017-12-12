@@ -13,13 +13,9 @@ class Movie:Mappable{
     
     var title:String!
     var overview:String!
-    var releaseDate:String!
-    
+    var releaseDate:String!    
     var posterPath:String?
-    var posterURL:URL?{
-        guard let path = posterPath else { return nil }
-        return URL(string:"https://image.tmdb.org/t/p/w92"+path)
-    }
+
     
     func mapping(map: Map) {
         
