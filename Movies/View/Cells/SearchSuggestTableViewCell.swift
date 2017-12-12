@@ -6,4 +6,10 @@
 //  Copyright © 2017 Emre Berk. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class SearchSuggestTableViewCell:UITableViewCell{
+    
+    @IBOutlet weak var suggestLabel:UILabel!
+    
+}

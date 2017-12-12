@@ -7,3 +7,17 @@
 //
 
 import Foundation
+@testable import Movies
+
+class UserDefaultsMock:UserDefaultsProtocol{
+    
+    var values = [String:Any?]()
+    
+    func set(_ value: Any?, forKey: String) {
+        values[forKey] = value
+    }
+    
+    func object(forKey: String) -> Any? {
+        return values[forKey]
+    }
+}

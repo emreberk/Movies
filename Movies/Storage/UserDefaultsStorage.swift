@@ -1,5 +1,5 @@
 //
-//  RealmStorage.swift
+//  UserDefaultsStorage.swift
 //  Movies
 //
 //  Created by Emre Berk on 11.12.2017.
@@ -8,17 +8,33 @@
 
 import Foundation
 
+protocol UserDefaultsProtocol{
+    func set(_ value: Any?, forKey: String)
+    func object(forKey: String) -> Any?
+}
+
+extension UserDefaults: UserDefaultsProtocol{}
+
 class UserDefaultsStorage: StorageProtocol{
     
     private struct Constant{
         static let UserDefaultKey = "AutoSuggestQueries"
+        static let LastQueriesMaxLimit = 10
     }
     
-    private let userDefaults = UserDefaults.standard
+    private let userDefaults:UserDefaultsProtocol!
+    
+    init(_ defaults:UserDefaultsProtocol = UserDefaults.standard){
+        self.userDefaults = defaults
+    }
     
     func addNewQuery(_ query: String) {
         var lastQueries = getLastQueries()
-        lastQueries.append(query)
+        let countDifference = lastQueries.count - Constant.LastQueriesMaxLimit
+        if countDifference >= 0{
+            lastQueries = Array(lastQueries.dropLast(countDifference+1))
+        }
+        lastQueries.insert(query, at: 0)
         userDefaults.set(lastQueries, forKey: Constant.UserDefaultKey)
     }
     

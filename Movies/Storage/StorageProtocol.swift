@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+protocol StorageProtocol{
+    func addNewQuery(_ query:String)
+    func getLastQueries() -> [String]
+}
+
