@@ -16,6 +16,10 @@ class SearchMovieResponse:Mappable{
     var totalPages:Int!
     var movies:[Movie]!
     
+    init(){
+        
+    }
+    
     func mapping(map: Map) {
         
     }

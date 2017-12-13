@@ -18,7 +18,7 @@ protocol ServiceProtocol{
 extension ServiceProtocol{
     func request<T:Mappable>(_ endpoint: EndpointProtocol,
                              _ completion:@escaping (_ item:T?, _ error:ServiceError?) -> Void){
-        
+
         var params = endpoint.parameters
         for (key,value) in defaultParameters{
             params[key] = value

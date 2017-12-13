@@ -29,7 +29,8 @@ class MovieCellViewModel{
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        if let date = dateFormatter.date(from: movie.releaseDate){
+        if let dateString = movie.releaseDate,
+           let date = dateFormatter.date(from: dateString){
             dateFormatter.dateFormat = "yyyy"
             releaseDate = "(\(dateFormatter.string(from: date)))"
         }

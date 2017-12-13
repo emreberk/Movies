@@ -16,6 +16,7 @@ class Movie:Mappable{
     var releaseDate:String!    
     var posterPath:String?
 
+    init(){}
     
     func mapping(map: Map) {
         
