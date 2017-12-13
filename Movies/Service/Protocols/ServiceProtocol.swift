@@ -13,6 +13,8 @@ import Alamofire
 protocol ServiceProtocol{
     var baseURL: URL { set get }
     var defaultParameters: [String:Any] { set get }
+    func request<T:Mappable>(_ endpoint: EndpointProtocol,
+                             _ completion:@escaping (_ item:T?, _ error:ServiceError?) -> Void)
 }
 
 extension ServiceProtocol{

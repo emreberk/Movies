@@ -13,4 +13,5 @@ protocol EndpointProtocol{
     var path: String { get }
     var method: Alamofire.HTTPMethod { get }
     var parameters: [String:Any] { get }
+    var sampleResponse: String { get }
 }
