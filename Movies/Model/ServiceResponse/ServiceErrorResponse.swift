@@ -18,6 +18,6 @@ class ServiceErrorResponse:Mappable{
     }
     
     required init?(map: Map) {
-        errors   <- map["errors"]
+        errors  <- map["errors"]
     }
 }

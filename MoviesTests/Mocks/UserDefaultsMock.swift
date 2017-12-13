@@ -18,6 +18,7 @@ class UserDefaultsMock:UserDefaultsProtocol{
     }
     
     func object(forKey: String) -> Any? {
-        return values[forKey]
+        if let value = values[forKey] { return value }
+        return nil
     }
 }

@@ -28,13 +28,18 @@ class UserDefaultsStorage: StorageProtocol{
         self.userDefaults = defaults
     }
     
-    // FIXME: Do not add a query if it already exits
     func addNewQuery(_ query: String) {
         var lastQueries = getLastQueries()
+        // removes query if already exist
+        if let existingIndex = lastQueries.index(of: query){
+            lastQueries.remove(at: existingIndex)
+        }
+        // check if queries exceed limit, remove last
         let countDifference = lastQueries.count - Constant.LastQueriesMaxLimit
         if countDifference >= 0{
             lastQueries = Array(lastQueries.dropLast(countDifference+1))
         }
+        // insert new item at 0 to keep the order
         lastQueries.insert(query, at: 0)
         userDefaults.set(lastQueries, forKey: Constant.UserDefaultKey)
     }

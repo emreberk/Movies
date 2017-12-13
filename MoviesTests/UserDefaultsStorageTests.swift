@@ -28,10 +28,32 @@ class UserDefaultsStorageTests:XCTestCase{
         XCTAssertEqual(sut.getLastQueries(), ["10","9","8","7","6","5","4","3","2","1"].reversed())
     }
     
-    func testAddNewQuery(){
+    func testAddNewQueryCount(){
         sut.addNewQuery("Hello")
         
         XCTAssertEqual(sut.getLastQueries().count, 1)
+    }
+    
+    func testAddNewQueryOrder(){
+        sut.addNewQuery("Hello")
+        sut.addNewQuery("World")
+        
+        XCTAssertEqual(sut.getLastQueries()[0], "World")
+    }
+    
+    func testAddExistingQueryCount(){
+        sut.addNewQuery("Hello")
+        sut.addNewQuery("Hello")
+        
+        XCTAssertEqual(sut.getLastQueries().count, 1)
+    }
+    
+    func testAddExistingQueryOrder(){
+        sut.addNewQuery("Hello")
+        sut.addNewQuery("World")
+        sut.addNewQuery("Hello")
+        
+        XCTAssertEqual(sut.getLastQueries()[0], "Hello")
     }
     
     override func tearDown() {
